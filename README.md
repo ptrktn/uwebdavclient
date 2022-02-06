@@ -4,7 +4,7 @@
 
 Minimal WebDAV client in pure Python. Only `GET`, `MKCOL`, and `PUT`
 are supported. Consider
-(webdavclient3)[https://pypi.org/project/webdavclient3] for more
+[webdavclient3](https://pypi.org/project/webdavclient3) for more
 extensive support.  The disk (container image) space gain by using
 this microscopic library is in the order of 15 MiB.
 
