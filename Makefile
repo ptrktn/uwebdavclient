@@ -25,3 +25,4 @@ tidy-sources:
        python3 -m py_compile $$i || exit 1 ; \
        $(AUTOPEP8) $$i || exit 1 ; \
     done ; rm -fr src/uwebdavclient/__pycache__
+	$(AUTOPEP8) setup.py

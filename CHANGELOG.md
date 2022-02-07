@@ -1,6 +1,6 @@
 ## [Unreleased]
 ### Changed
-- N/A
+- Required Requests added to setup.
 
 ### Added
 - N/A
