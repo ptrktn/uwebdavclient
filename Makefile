@@ -2,8 +2,7 @@ MYREPO = uwebdavclient
 AUTOPEP8 = autopep8 --in-place --aggressive --aggressive --max-line-length 128
 
 .PHONY: all
-all:
-	/bin/false
+all: build
 
 .PHONY: test
 test:
@@ -11,7 +10,7 @@ test:
 
 .PHONY: build
 build:
-	rm -fr ./dist
+	rm -fr ./dist ./src/uwebdavclient.egg-info
 	python3 -m build
 
 .PHONY: upload
@@ -25,4 +24,4 @@ tidy-sources:
        test -x "$$i" || exit 1 ; \
        python3 -m py_compile $$i || exit 1 ; \
        $(AUTOPEP8) $$i || exit 1 ; \
-    done ; rm -fr __pycache__
+    done ; rm -fr src/uwebdavclient/__pycache__
