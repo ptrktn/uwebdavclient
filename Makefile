@@ -9,9 +9,12 @@ test:
 	/bin/false
 
 .PHONY: build
-build:
-	rm -fr ./dist ./src/uwebdavclient.egg-info
+build: clean
 	python3 -m build
+
+.PHONY: install
+install:
+	pip3 install `find dist -type f -name '*.whl'` --force-reinstall --user
 
 .PHONY: upload
 upload:
@@ -26,3 +29,7 @@ tidy-sources:
        $(AUTOPEP8) $$i || exit 1 ; \
     done ; rm -fr src/uwebdavclient/__pycache__
 	$(AUTOPEP8) setup.py
+
+.PHONY: clean
+clean:
+	rm -fr ./dist ./src/uwebdavclient.egg-info
