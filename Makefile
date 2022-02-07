@@ -14,7 +14,8 @@ build: clean
 
 .PHONY: install
 install: build
-	pip3 install `find dist -type f -name '*.whl'` --force-reinstall --user
+	pip3 uninstall -y uwebdavclient
+	pip3 install `find dist -type f -name '*.whl'` --user
 
 .PHONY: upload
 upload:

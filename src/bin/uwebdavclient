@@ -3,8 +3,6 @@
 import uwebdavclient
 import sys
 
-status = uwebdavclient.main(sys.argv[0:])
+status = uwebdavclient.main()
 
 sys.exit(status)
-
-

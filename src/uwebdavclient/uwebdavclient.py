@@ -301,6 +301,4 @@ def main():
         client.log(f"FILE {src} {xfile}")
         client.upload_sync(xfile, src)
 
-
-if __name__ == "__main__":
-    main()
+    return 0
