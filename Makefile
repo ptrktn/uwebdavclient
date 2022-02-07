@@ -13,7 +13,7 @@ build: clean
 	python3 -m build
 
 .PHONY: install
-install:
+install: build
 	pip3 install `find dist -type f -name '*.whl'` --force-reinstall --user
 
 .PHONY: upload
