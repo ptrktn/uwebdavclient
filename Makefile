@@ -23,7 +23,7 @@ upload:
 
 .PHONY: tidy-sources
 tidy-sources:
-	for i in src/uwebdavclient/uwebdavclient.py ; \
+	for i in src/uwebdavclient/client.py ; \
        do echo Checking file $$i ; \
        test -x "$$i" || exit 1 ; \
        python3 -m py_compile $$i || exit 1 ; \
