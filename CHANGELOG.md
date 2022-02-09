@@ -1,9 +1,10 @@
 ## [Unreleased]
 ### Changed
 - Required Requests added to setup.
+- Modify client to match webdav3 usage.
 
 ### Added
-- bin/uwebdavclient script
+- bin/uwebdavclient script.
 
 ## [0.0.1] - 2022-02-07
 ### Initial release
