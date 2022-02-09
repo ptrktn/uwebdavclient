@@ -204,7 +204,7 @@ def main():
     parser.add_argument(
         '--insecure', action="store_true",
         default=bool(
-            int(os.getenv("WEBDAV_INSECURE", 0))))
+            os.getenv("WEBDAV_INSECURE", 0)))
     parser.add_argument('--login', default=os.getenv("WEBDAV_LOGIN"))
     parser.add_argument('--password', default=os.getenv("WEBDAV_PASSWORD"))
     parser.add_argument('--prefix', default=os.getenv("WEBDAV_PREFIX"))
@@ -213,9 +213,9 @@ def main():
     parser.add_argument(
         '--verbose',
         action="store_true",
-        default=os.getenv(
+        default=bool(os.getenv(
             "WEBDAV_VERBOSE",
-            False))
+            False)))
     parser.add_argument(
         "input",
         nargs="+",
