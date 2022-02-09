@@ -8,11 +8,24 @@ are supported. Consider
 extensive support.  The disk (container image) space gain by using
 this microscopic library is in the order of 15 MiB.
 
-## Getting Started
+## Installation
 
 ```bash
 pip install uwebdavclient --user
 ```
+
+## Usage
+
+    from uwebdavclient.client import Client
+    options = {
+        'webdav_hostname': "https://example.com",
+        'webdav_login':    "login",
+        'webdav_password': "password"
+    }
+    client = Client(options)
+    client.mkdir("test")
+	client.upload_sync("test/test.txt", "test.txt")
+    client.download_sync("test/test.txt", "test_copy.txt")
 
 ## Contributing
 

@@ -1,6 +1,6 @@
-from .uwebdavclient import Client, main
+from .client import main
 
 __all__ = ["Client", "main"]
 
-def main():
-    return uwebdavclient.main()
+def command_line():
+    return main()
