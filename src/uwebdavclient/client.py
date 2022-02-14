@@ -54,20 +54,12 @@ class Client(object):
             f"{self.options['root']}/{path}"
         )
 
-    def mkdir(self, remote_path):
-        for n in range(1, cfg["retry"]):
-            status = self._mkdir(remote_path)
-            if True == status:
-                return True
-            self.log(f"Retry n={n}")
-            time.sleep(n**2)
-        return False
-
-    def _mkdir(self, remote_path):
+    def check(self, remote_path):
+        """ True if resource is exist or False otherwise """
         url = self.get_url(remote_path)
         try:
             r = requests.request(
-                'MKCOL',
+                "PROPFIND",
                 url,
                 auth=(
                     self.options["login"],
@@ -81,6 +73,39 @@ class Client(object):
             self.log(f"FIXME {e}")
             return False
 
+        self.log(f"check {url} {r.status_code}")
+        if 207 == r.status_code or 200 == r.status_code:
+            return True
+        return False
+
+    def mkdir(self, remote_path):
+        for n in range(1, cfg["retry"]):
+            status = self._mkdir(remote_path)
+            if True == status:
+                return True
+            self.log(f"Retry n={n}")
+            time.sleep(n**2)
+        return False
+
+    def _mkdir(self, remote_path):
+        url = self.get_url(remote_path)
+        try:
+            r = requests.request(
+                "MKCOL",
+                url,
+                auth=(
+                    self.options["login"],
+                    self.options["password"]),
+                verify=not(self.options["insecure"])
+            )
+        except requests.exceptions.SSLError as e:
+            self.log(f"FIXME {e}")
+            return False
+        except Exception as e:
+            self.log(f"FIXME {e}")
+            return False
+
+        self.log(f"check {url} {r.status_code}")
         if 201 == r.status_code or 200 == r.status_code:
             self.log(f"Directory {remote_path} created")
             return True
@@ -136,6 +161,7 @@ class Client(object):
             self.log(f"{e}")
             return False
 
+        self.log(f"upload {url} {r.status_code}")
         if r.status_code in [201, 204]:
             if r.headers.get("X-Hash-Md5"):
                 md5_orig = md5sum(local_path).lower()
@@ -179,6 +205,8 @@ class Client(object):
         except requests.exceptions.SSLError as e:
             self.log(f"{e}")
             return False
+
+        self.log(f"download {url} {r.status_code}")
         if 200 == r.status_code:
             with open(local_path, "wb") as fp:
                 fp.write(r.content)
@@ -199,6 +227,7 @@ def md5sum(fname):
 
 def main():
     parser = argparse.ArgumentParser()
+    parser.add_argument("--check", action="store_true", default=False)
     parser.add_argument('--download', action="store_true", default=False)
     parser.add_argument('--hostname', default=os.getenv("WEBDAV_HOSTNAME"))
     parser.add_argument(
@@ -237,6 +266,12 @@ def main():
 
     client.log(f"INPUT {args.input}")
     client.log(f"PREFIX {args.prefix}")
+
+    if args.check:
+        for i in args.input:
+            client.log(f"CHECK {i}")
+            print(client.check(i))
+        return
 
     if args.download:
         for i in args.input:

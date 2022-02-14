@@ -5,6 +5,8 @@
 
 ### Added
 - bin/uwebdavclient script.
+- `check()` method by using PROPFIND.
+- `--check` option.
 
 ## [0.0.1] - 2022-02-07
 ### Initial release
