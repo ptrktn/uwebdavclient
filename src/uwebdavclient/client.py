@@ -67,10 +67,10 @@ class Client(object):
                 verify=not(self.options["insecure"])
             )
         except requests.exceptions.SSLError as e:
-            self.log(f"FIXME {e}")
+            self.log(f"{e}")
             return False
         except Exception as e:
-            self.log(f"FIXME {e}")
+            self.log(f"{e}")
             return False
 
         self.log(f"check {url} {r.status_code}")
@@ -99,10 +99,10 @@ class Client(object):
                 verify=not(self.options["insecure"])
             )
         except requests.exceptions.SSLError as e:
-            self.log(f"FIXME {e}")
+            self.log(f"{e}")
             return False
         except Exception as e:
-            self.log(f"FIXME {e}")
+            self.log(f"{e}")
             return False
 
         self.log(f"check {url} {r.status_code}")
@@ -212,7 +212,6 @@ class Client(object):
                 fp.write(r.content)
             self.log(f"File {url} downloaded to {local_path}")
             return True
-        self.log(f"FIXME {r.status_code}")
         return False
 
 
