@@ -11,6 +11,7 @@ test:
 .PHONY: build
 build: clean
 	python3 -m build
+	python3 -m twine check dist/*
 
 .PHONY: install
 install: build
@@ -19,7 +20,7 @@ install: build
 
 .PHONY: upload
 upload:
-	python3 -m twine upload --repository pypi dist/*
+	python3 -m twine upload  --verbose --repository pypi dist/*
 
 .PHONY: tidy-sources
 tidy-sources:

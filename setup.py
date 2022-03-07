@@ -16,6 +16,7 @@ if __name__ == "__main__":
         url=f"https://github.com/{githubuser}/{name}",
         description="Minimal WebDAV client in pure Python",
         long_description=long_description,
+        long_description_content_type="text/markdown",
         install_requires=["requests", ],
         scripts=[f"src/bin/{name}", ],
         project_urls={
