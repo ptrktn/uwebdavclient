@@ -10,7 +10,7 @@ if __name__ == "__main__":
     setuptools.setup(
         py_modules=[name],
         name=name,
-        version="0.0.2",
+        version="0.0.3",
         author=f"{githubuser}@github",
         author_email="{githubuser}@users.noreply.github.com",
         url=f"https://github.com/{githubuser}/{name}",
