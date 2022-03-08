@@ -18,9 +18,9 @@ pip install uwebdavclient --user
 
     from uwebdavclient.client import Client
     options = {
-        "webdav_hostname": "https://example.com",
-        "webdav_login":    "login",
-        "webdav_password": "password"
+        "hostname": "https://example.com",
+        "login":    "login",
+        "password": "password"
     }
     client = Client(options)
     client.mkdir("test")
