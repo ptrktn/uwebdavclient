@@ -1,4 +1,7 @@
 ## [Unreleased]
+
+## [0.0.2] - 2022-03-07
+
 ### Changed
 - Required Requests added to setup.
 - Modify client to match webdav3 usage.
