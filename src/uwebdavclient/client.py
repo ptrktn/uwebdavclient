@@ -179,7 +179,7 @@ class Client(object):
             return True
         else:
             self.log(f"File {filename} upload to server {url} failed "
-                     "(status_code={r.status_code})")
+                     f"(status_code={r.status_code})")
         return False
 
     def download_sync(self, remote_path, local_path, *args, **kwargs):
